@@ -45,7 +45,7 @@
 #include <stdlib.h>
 #include <inttypes.h>
 #if defined(WIN32) || defined(_WIN32)
-#include <Windows.h>
+#include <windows.h>
 #else
 #include <pthread.h>
 #include <stdint.h>

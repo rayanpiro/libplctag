@@ -51,8 +51,8 @@ extern "C"
 #include <tchar.h>
 #include <strsafe.h>
 #include <io.h>
-#include <Winsock2.h>
-#include <Ws2tcpip.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
 #include <string.h>
 #include <stdlib.h>
 #include <winnt.h>

@@ -44,8 +44,8 @@
     #include <tchar.h>
     #include <strsafe.h>
     #include <io.h>
-    #include <Winsock2.h>
-    #include <Ws2tcpip.h>
+    #include <winsock2.h>
+    #include <ws2tcpip.h>
 #else
     /* assume it is POSIX of some sort... */
     #include <sys/time.h>

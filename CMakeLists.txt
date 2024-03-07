@@ -141,7 +141,7 @@ if (${CMAKE_GENERATOR} MATCHES "MinGW Makefiles")
 endif()
 
 # build examples flag
-set(BUILD_EXAMPLES 1 CACHE BOOL "Build examples or not")
+set(BUILD_EXAMPLES 0 CACHE BOOL "Build examples or not")
 
 # set flags for MacOSX
 if (APPLE)
@@ -391,13 +391,13 @@ FOREACH( lib_src ${libplctag_SRCS} )
 ENDFOREACH()
 
 # shared library
-add_library(plctag_dyn SHARED ${libplctag_SRCS} )
+# add_library(plctag_dyn SHARED ${libplctag_SRCS} )
 
 # set various properties on them
-set_target_properties(plctag_dyn PROPERTIES SOVERSION "${libplctag_VERSION_MAJOR}.${libplctag_VERSION_MINOR}" OUTPUT_NAME "plctag")
+# set_target_properties(plctag_dyn PROPERTIES SOVERSION "${libplctag_VERSION_MAJOR}.${libplctag_VERSION_MINOR}" OUTPUT_NAME "plctag")
 
 if(BASE_LINK_FLAGS)
-    set_target_properties(plctag_dyn PROPERTIES LINK_FLAGS "${BASE_LINK_FLAGS}")
+    # set_target_properties(plctag_dyn PROPERTIES LINK_FLAGS "${BASE_LINK_FLAGS}")
 endif()
 
 if(UNIX)
@@ -406,28 +406,28 @@ if(UNIX)
     set_target_properties(plctag_static PROPERTIES LINK_FLAGS "${BASE_LINK_FLAGS}")
 	set_target_properties(plctag_static PROPERTIES VERSION "${libplctag_VERSION_MAJOR}.${libplctag_VERSION_MINOR}" OUTPUT_NAME "plctag")
 
-	set(tool_lib "plctag_dyn")
+    # set(tool_lib "plctag_dyn")
 elseif(WIN32)
     # static library
 	add_library(plctag_static STATIC ${libplctag_SRCS} )
 	set_target_properties(plctag_static PROPERTIES LINK_FLAGS "${BASE_LINK_FLAGS}")
-	set_target_properties(plctag_static PROPERTIES VERSION "${libplctag_VERSION_MAJOR}.${libplctag_VERSION_MINOR}" OUTPUT_NAME "plctag_static")
+	set_target_properties(plctag_static PROPERTIES VERSION "${libplctag_VERSION_MAJOR}.${libplctag_VERSION_MINOR}" OUTPUT_NAME "plctag")
 
-    target_compile_definitions(plctag_dyn PUBLIC -DLIBPLCTAGDLL_EXPORTS=1)
-	set(tool_lib "plctag_dyn")
+    # target_compile_definitions(plctag_dyn PUBLIC -DLIBPLCTAGDLL_EXPORTS=1)
+    # set(tool_lib "plctag_dyn")
 endif()
 
 # make sure we link with the threading library.
 if (UNIX)
     if(CMAKE_THREAD_LIBS_INIT)
-      target_link_libraries(plctag_dyn "${CMAKE_THREAD_LIBS_INIT}")
+        # target_link_libraries(plctag_dyn "${CMAKE_THREAD_LIBS_INIT}")
       target_link_libraries(plctag_static "${CMAKE_THREAD_LIBS_INIT}")
     endif()
 endif()
 
 # Windows needs to link the library to the WINSOCK library
 if (WIN32)
-    target_link_libraries(plctag_dyn ws2_32)
+    # target_link_libraries(plctag_dyn ws2_32)
     target_link_libraries(plctag_static ws2_32)
 endif()
 
@@ -609,10 +609,10 @@ endif(ANDROID_BUILD)
 
 # for installation
 if(UNIX)
-	install(TARGETS plctag_dyn DESTINATION lib${LIB_SUFFIX})
+    # install(TARGETS plctag_dyn DESTINATION lib${LIB_SUFFIX})
 	install(TARGETS plctag_static DESTINATION lib${LIB_SUFFIX})
 elseif(WIN32)
-	install(TARGETS plctag_dyn DESTINATION lib${LIB_SUFFIX})
+    # install(TARGETS plctag_dyn DESTINATION lib${LIB_SUFFIX})
 	install(TARGETS plctag_static DESTINATION lib${LIB_SUFFIX})
 endif()
 

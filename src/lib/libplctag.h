@@ -40,24 +40,10 @@ extern "C" {
 #endif
 
 
-#if  defined(_WIN32) || defined(WIN32) || defined(WIN64) || defined(_WIN64)
-    #ifdef __cplusplus
-        #define C_FUNC extern "C"
-    #else
-        #define C_FUNC
-    #endif
-
-    #ifdef LIBPLCTAGDLL_EXPORTS
-        #define LIB_EXPORT __declspec(dllexport)
-    #else
-        #define LIB_EXPORT __declspec(dllimport)
-    #endif
+#ifdef LIBPLCTAGDLL_EXPORTS
+    #define LIB_EXPORT __attribute__ ((visibility ("default")))
 #else
-    #ifdef LIBPLCTAGDLL_EXPORTS
-        #define LIB_EXPORT __attribute__ ((visibility ("default")))
-    #else
-        #define LIB_EXPORT extern
-    #endif
+    #define LIB_EXPORT extern
 #endif
 
 
